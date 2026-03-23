@@ -82,16 +82,22 @@ function SkillsOutput() {
 function ProjectsOutput() {
   const projects = [
     {
+      name: "Terminal Portfolio",
+      description: "This site! A retro CRT-styled interactive terminal portfolio built with Next.js and Tailwind CSS.",
+      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      link: "https://github.com/colinshaw7/portfolio",
+    },
+    {
       name: "QuestGPT",
       description: "Full-stack infinite survival game with battles, shops, and NPCs. Built with a 5-person team for CS506.",
       tech: ["Java", "Spring Boot", "React", "MySQL"],
-      link: "#",
+      link: "https://github.com/mattdomingo/QuestGPT",
     },
     {
       name: "MadMovies",
       description: "Movie recommendation service built in 24 hours at MadData Hackathon 2025. Delivers recommendations through data processing.",
       tech: ["FastAPI", "SQLite", "React"],
-      link: "#",
+      link: "https://github.com/Jake-Garneau/MadMovies",
     },
   ];
 
