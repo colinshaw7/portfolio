@@ -51,10 +51,10 @@ function AboutOutput() {
 function SkillsOutput() {
   const skills = [
     { category: "Languages", items: ["Java", "Python", "JavaScript/TypeScript", "C", "C++", "R", "Assembly"] },
-    { category: "Frontend", items: ["React", "Next.js", "Jest"] },
-    { category: "Backend", items: ["FastAPI", "Spring Boot", "SQLite", "SQLAlchemy", "MySQL"] },
+    { category: "Frontend", items: ["React"] },
+    { category: "Backend", items: ["FastAPI", "SQLite", "SQLAlchemy"] },
     { category: "Data/ML", items: ["Scikit-learn", "NumPy", "Pandas", "Matplotlib"] },
-    { category: "Tools", items: ["Git", "Docker", "Jira", "GitHub Actions", "CI/CD"] },
+    { category: "Tools", items: ["Git", "Docker", "Jira"] },
   ];
 
   return (
@@ -138,6 +138,12 @@ function ResumeOutput() {
         <p className="text-amber font-bold">Experience</p>
         <div className="pl-4 space-y-3 mt-1">
           <div>
+            <p className="text-foreground">Software Developer (UW Madison Capstone) — <span className="text-cyan">Amazon/Shopbop</span></p>
+            <p className="text-gray-light text-sm">Jan 2026 — Present · Manhattan Beach, CA</p>
+            <p className="text-gray-light text-sm pl-2">• Product Owner and Developer for CS 620 capstone team under Shopbop mentors</p>
+            <p className="text-gray-light text-sm pl-2">• Designed and iterated on a capsule wardrobe creation application, solving novel problems and prioritizing high-impact features</p>
+          </div>
+          <div>
             <p className="text-foreground">Software Development Intern — <span className="text-cyan">TVScientific</span></p>
             <p className="text-gray-light text-sm">Jun 2025 — Sept 2025 · El Segundo, CA</p>
             <p className="text-gray-light text-sm pl-2">• Designed and implemented new audience targeting functions in an agile team</p>
@@ -150,11 +156,6 @@ function ResumeOutput() {
             <p className="text-gray-light text-sm pl-2">• Manage 9 casts of 100-200 people as liaison between exec board and production</p>
             <p className="text-gray-light text-sm pl-2">• Projected to raise $500K+ for Gio&apos;s Garden nonprofit (2025-2026)</p>
             <p className="text-gray-light text-sm pl-2">• Previously PR Chair — raised $610K+ for Safe Harbor (2024-2025)</p>
-          </div>
-          <div>
-            <p className="text-foreground">Head Coach — <span className="text-cyan">Beachsports</span></p>
-            <p className="text-gray-light text-sm">Jun 2019 — Sept 2023 · Manhattan Beach, CA</p>
-            <p className="text-gray-light text-sm pl-2">• Managed daily operations, staff onboarding, 100+ participants weekly</p>
           </div>
         </div>
       </div>
