@@ -345,7 +345,7 @@ export default function Home() {
                       e.stopPropagation();
                       processCommand(cmd);
                     }}
-                    className="group cursor-pointer"
+                    className="group !cursor-pointer"
                   >
                     <span className="text-amber group-hover:text-green transition-colors">
                       {cmd}
