@@ -36,10 +36,7 @@ function AboutOutput() {
     <div className="space-y-3">
       <p className="text-green text-glow font-bold">{'>'} COLIN SHAW</p>
       <p className="text-foreground">
-        Computer Science senior at UW-Madison with a Data Science certificate.
-        Passionate about backend and frontend development, AI/ML systems,
-        and data analysis. I focus on building business applications and
-        fostering collaboration in development teams.
+        Senior at UW-Madison studying Computer Science and Data Science with full-stack development experience specializing in React, Python, and Java. Extensive track record building production features and leading large-scale projects. Seeking full-time software engineering roles in a full-stack or AI-adjacent role.
       </p>
       <p className="text-gray-light">
         Manhattan Beach, CA · Madison, WI
@@ -50,11 +47,12 @@ function AboutOutput() {
 
 function SkillsOutput() {
   const skills = [
-    { category: "Languages", items: ["Java", "Python", "JavaScript/TypeScript", "C", "C++", "R", "Assembly"] },
-    { category: "Frontend", items: ["React"] },
-    { category: "Backend", items: ["FastAPI", "SQLite", "SQLAlchemy"] },
-    { category: "Data/ML", items: ["Scikit-learn", "NumPy", "Pandas", "Matplotlib"] },
-    { category: "Tools", items: ["Git", "Docker", "Jira"] },
+    { category: "Languages", items: ["Java", "Python", "JavaScript", "TypeScript", "C", "C++", "R", "Assembly"] },
+    { category: "Frontend", items: ["React", "Next.js", "Vite", "Jest", "Tailwind CSS"] },
+    { category: "Backend", items: ["Spring Boot", "FastAPI", "MySQL", "SQLite", "SQLAlchemy"] },
+    { category: "Libraries", items: ["Scikit-learn", "NumPy", "Pandas", "Matplotlib"] },
+    { category: "Tools", items: ["Git", "Docker", "Jira", "GitHub Actions", "CI/CD"] },
+
   ];
 
   return (
@@ -81,6 +79,12 @@ function SkillsOutput() {
 
 function ProjectsOutput() {
   const projects = [
+    {
+      name: "MadTrips",
+      description: "Currently in development. Trip-planning app to help a user find points of interest along a travel path.",
+      tech: ["React", "Vite", "Zustand", "FastAPI", "Tailwind CSS", "Mapbox GL JS", "OpenRouteService API"],
+      link: "https://github.com/colinshaw7/trip-planner",
+    },
     {
       name: "Terminal Portfolio",
       description: "This site! A retro CRT-styled interactive terminal portfolio built with Next.js and Tailwind CSS.",
