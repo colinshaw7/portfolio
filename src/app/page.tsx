@@ -174,7 +174,7 @@ function ResumeOutput() {
         <p className="text-amber font-bold">Education</p>
         <div className="pl-4 mt-1">
           <p className="text-foreground">B.S. Computer Science, Data Science Certificate</p>
-          <p className="text-gray-light text-sm">University of Wisconsin-Madison · Senior · 3.3 GPA · Sep 2022 — Present</p>
+          <p className="text-gray-light text-sm">University of Wisconsin-Madison · Senior · 3.3 GPA · Sep 2022 — May 2026</p>
         </div>
       </div>
     </div>
@@ -195,6 +195,8 @@ function ContactOutput() {
           <span className="text-amber">github</span>
           <span className="text-gray"> ... </span>
           <a href="https://github.com/colinshaw7" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">github.com/colinshaw7</a>
+          <a> and </a>
+          <a href="https://github.com/cjshaw3" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">github.com/cjshaw3</a>
         </p>
         <p>
           <span className="text-amber">linkedin</span>
