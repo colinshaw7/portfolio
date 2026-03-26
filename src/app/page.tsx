@@ -82,7 +82,7 @@ function ProjectsOutput() {
     {
       name: "MadTrips",
       description: "Currently in development. Trip-planning app to help a user find points of interest along a travel path.",
-      tech: ["React", "Vite", "Zustand", "FastAPI", "Tailwind CSS", "Mapbox GL JS", "OpenRouteService API"],
+      tech: ["React", "Vite", "Zustand", "FastAPI", "Tailwind CSS", "Mapbox GL JS", "OpenRouteService API",  "Docker"],
       link: "https://github.com/colinshaw7/trip-planner",
     },
     {
