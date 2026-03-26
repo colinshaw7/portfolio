@@ -39,7 +39,7 @@ function AboutOutput() {
         Senior at UW-Madison studying Computer Science and Data Science with full-stack development experience specializing in React, Python, and Java. Extensive track record building production features and leading large-scale projects. Seeking full-time software engineering roles in a full-stack or AI-adjacent role.
       </p>
       <p className="text-gray-light">
-        Manhattan Beach, CA · Madison, WI
+        Los Angeles, CA · Madison, WI
       </p>
     </div>
   );
