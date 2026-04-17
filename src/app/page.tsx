@@ -1,13 +1,16 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import dynamic from "next/dynamic";
+
+const CRTOverlay = dynamic(() => import("../components/CRTOverlay"), { ssr: false });
 
 const ASCII_ART = `
   /$$$$$$            /$$ /$$                  /$$$$$$  /$$                              
- /$$__  $$  /$$$$$$ | $$|__/                 /$$__  $$| $$                              
-| $$   \\__/ $$__  $$| $$ /$$ /$$$$$$$       | $$  \\__/| $$$$$$$   /$$$$$$  /$$  /$$  /$$
-| $$      | $$  \\ $$| $$| $$| $$__  $$      |  $$$$$$ | $$__  $$ |____  $$| $$ | $$ | $$
-| $$      | $$  | $$| $$| $$| $$  \\ $$       \\____  $$| $$  \\ $$  /$$$$$$$| $$ | $$ | $$
+ /$$__  $$          | $$|__/                 /$$__  $$| $$                              
+| $$   \\__/ /$$$$$$ | $$ /$$ /$$$$$$$       | $$  \\__/| $$$$$$$   /$$$$$$  /$$  /$$  /$$
+| $$       /$$__  $$| $$| $$| $$__  $$      |  $$$$$$ | $$__  $$ |____  $$| $$ | $$ | $$
+| $$      | $$  \\ $$| $$| $$| $$  \\ $$       \\____  $$| $$  \\ $$  /$$$$$$$| $$ | $$ | $$
 | $$    $$| $$  | $$| $$| $$| $$  | $$       /$$  \\ $$| $$  | $$ /$$__  $$| $$ | $$ | $$
 |  $$$$$$/|  $$$$$$/| $$| $$| $$  | $$      |  $$$$$$/| $$  | $$|  $$$$$$$|  $$$$$/$$$$/
  \\______/  \\______/ |__/|__/|__/  |__/       \\______/ |__/  |__/ \\_______/ \\_____/\\___/
@@ -307,8 +310,9 @@ export default function Home() {
   return (
     <div
       className="min-h-screen bg-background p-4 sm:p-8 cursor-text"
-      onClick={() => inputRef.current?.focus()}
+      onClick={() => { if (!window.getSelection()?.toString()) inputRef.current?.focus(); }}
     >
+      <CRTOverlay />
       <div className="max-w-4xl mx-auto">
         {/* Boot sequence */}
         {!booted && (
