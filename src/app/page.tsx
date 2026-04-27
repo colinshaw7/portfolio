@@ -23,13 +23,14 @@ interface HistoryEntry {
 }
 
 const COMMANDS: Record<string, { description: string; category: string }> = {
+  help: { description: "List available commands", category: "system" },
   about: { description: "Who is Colin Shaw?", category: "info" },
   skills: { description: "Technical skills & expertise", category: "info" },
   projects: { description: "Featured projects & work", category: "info" },
   resume: { description: "Education & experience", category: "info" },
   contact: { description: "Get in touch", category: "info" },
-  dino: { description: "Play the dino runner game", category: "fun" },
-  leaderboard: { description: "View dino game high scores", category: "fun" },
+  dino: { description: "Play the dino runner game", category: "extra" },
+  leaderboard: { description: "View dino game high scores", category: "extra" },
   clear: { description: "Clear the terminal", category: "system" },
 };
 
@@ -252,6 +253,38 @@ function LeaderboardOutput() {
   );
 }
 
+function HelpOutput({ onCommand }: { onCommand: (cmd: string) => void }) {
+  const categories = ["system", "info", "extra"] as const;
+  const labels: Record<string, string> = { system: "System", info: "Info", extra: "Extra" };
+  return (
+    <div className="space-y-3">
+      <p className="text-green text-glow font-bold">{">"} AVAILABLE COMMANDS</p>
+      {categories.map((cat) => {
+        const cmds = Object.entries(COMMANDS).filter(([, v]) => v.category === cat);
+        if (!cmds.length) return null;
+        return (
+          <div key={cat}>
+            <span className="text-amber">[{labels[cat]}]</span>
+            <div className="pl-4 mt-1 space-y-0.5">
+              {cmds.map(([cmd, { description }]) => (
+                <div key={cmd} className="flex gap-2">
+                  <button
+                    onClick={() => onCommand(cmd)}
+                    className="text-cyan hover:text-green transition-colors text-sm w-24 text-left !cursor-pointer"
+                  >
+                    {cmd}
+                  </button>
+                  <span className="text-gray-light text-sm">— {description}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function ErrorOutput({ command }: { command: string }) {
   return (
     <div>
@@ -259,7 +292,7 @@ function ErrorOutput({ command }: { command: string }) {
         bash: {command}: command not found
       </p>
       <p className="text-gray-light">
-        Type a command from the list above to explore.
+        Type <span className="text-amber">help</span> to see available commands.
       </p>
     </div>
   );
@@ -295,6 +328,9 @@ export default function Home() {
     let output: React.ReactNode;
 
     switch (trimmed) {
+      case "help":
+        output = <HelpOutput onCommand={processCommand} />;
+        break;
       case "about":
         output = <AboutOutput />;
         break;
@@ -387,27 +423,15 @@ export default function Home() {
                 Welcome to my terminal. Type a command to explore.
               </p>
               <p className="text-gray-light text-sm">
-                Available commands:
+                Type{" "}
+                <button
+                  onClick={(e) => { e.stopPropagation(); processCommand("help"); }}
+                  className="text-amber hover:text-green transition-colors !cursor-pointer"
+                >
+                  help
+                </button>
+                {" "}to see available commands.
               </p>
-              <div className="flex flex-wrap gap-3 pl-2">
-                {Object.entries(COMMANDS).map(([cmd, { description }]) => (
-                  <button
-                    key={cmd}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      processCommand(cmd);
-                    }}
-                    className="group !cursor-pointer"
-                  >
-                    <span className="text-amber group-hover:text-green transition-colors">
-                      {cmd}
-                    </span>
-                    <span className="text-gray hidden sm:inline">
-                      {" "}— {description}
-                    </span>
-                  </button>
-                ))}
-              </div>
             </div>
 
             {/* Command History */}
