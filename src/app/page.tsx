@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 
 const CRTOverlay = dynamic(() => import("../components/CRTOverlay"), { ssr: false });
+import DinoGame from "../components/DinoGame";
 
 const ASCII_ART = `
   /$$$$$$            /$$ /$$                  /$$$$$$  /$$                              
@@ -27,6 +28,8 @@ const COMMANDS: Record<string, { description: string; category: string }> = {
   projects: { description: "Featured projects & work", category: "info" },
   resume: { description: "Education & experience", category: "info" },
   contact: { description: "Get in touch", category: "info" },
+  dino: { description: "Play the dino runner game", category: "fun" },
+  leaderboard: { description: "View dino game high scores", category: "fun" },
   clear: { description: "Clear the terminal", category: "system" },
 };
 
@@ -87,7 +90,7 @@ function ProjectsOutput() {
     {
       name: "Terminal Portfolio",
       description: "This site! A retro CRT-styled interactive terminal portfolio built with Next.js and Tailwind CSS.",
-      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Three.js"],
       link: "https://github.com/colinshaw7/portfolio",
     },
     {
@@ -212,6 +215,43 @@ function ContactOutput() {
   );
 }
 
+function LeaderboardOutput() {
+  const [data, setData] = useState<Array<{ name: string; score: number }>>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/scores")
+      .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+      .then((d) => { setData(d); setLoading(false); })
+      .catch(() => { setError(true); setLoading(false); });
+  }, []);
+
+  return (
+    <div className="space-y-2">
+      <p className="text-green text-glow font-bold">{">"} DINO LEADERBOARD</p>
+      {loading && <p className="text-gray-light text-sm">Fetching scores...</p>}
+      {error && <p className="text-red text-sm">Failed to load leaderboard.</p>}
+      {!loading && !error && data.length === 0 && (
+        <p className="text-gray-light text-sm">
+          No scores yet. Type <span className="text-amber">dino</span> to play!
+        </p>
+      )}
+      {!loading && !error && data.length > 0 && (
+        <div className="border border-green-dark p-2 space-y-0.5 text-sm">
+          {data.map((entry, i) => (
+            <div key={i} className="flex gap-4">
+              <span className="text-amber w-6">#{i + 1}</span>
+              <span className="text-foreground w-32">{entry.name}</span>
+              <span className="text-cyan">{entry.score.toLocaleString()} pts</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ErrorOutput({ command }: { command: string }) {
   return (
     <div>
@@ -269,6 +309,12 @@ export default function Home() {
         break;
       case "contact":
         output = <ContactOutput />;
+        break;
+      case "dino":
+        output = <DinoGame key={Date.now()} />;
+        break;
+      case "leaderboard":
+        output = <LeaderboardOutput />;
         break;
       case "clear":
         setHistory([]);
