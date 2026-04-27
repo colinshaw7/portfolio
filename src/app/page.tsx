@@ -82,9 +82,15 @@ function SkillsOutput() {
 
 function ProjectsOutput() {
   const projects = [
+     {
+      name: "Uncluttrd",
+      description: "Capsule Wardrobe creator and explorer app. Built with a 6-person team for CS620 (Computer Science Capstone/Senior Design Project) in collaboration with Amazon/Shopbop.",
+      tech: ["React", "Vite", "FastAPI","AWS Cloudfront", "AWS S3", "AWS EC2","AWS RDS", "Github Actions CI/CD", "Docker"],
+      link: "https://uncluttrd.fit",
+    },
     {
       name: "MadTrips",
-      description: "Currently in development. Trip-planning app to help a user find points of interest along a travel path.",
+      description: "Trip-planning app to help a user find points of interest along a travel path.",
       tech: ["React", "Vite", "Zustand", "FastAPI", "Tailwind CSS", "Mapbox GL JS", "OpenRouteService API",  "Docker"],
       link: "https://github.com/colinshaw7/trip-planner",
     },
@@ -96,7 +102,7 @@ function ProjectsOutput() {
     },
     {
       name: "QuestGPT",
-      description: "Full-stack infinite survival game with battles, shops, and NPCs. Built with a 5-person team for CS506.",
+      description: "Full-stack infinite survival game with battles, shops, and NPCs. Built with a 5-person team for CS506 (Software Development).",
       tech: ["Java", "Spring Boot", "React", "MySQL"],
       link: "https://github.com/mattdomingo/QuestGPT",
     },
