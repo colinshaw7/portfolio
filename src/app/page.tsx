@@ -39,7 +39,7 @@ function AboutOutput() {
     <div className="space-y-3">
       <p className="text-green text-glow font-bold">{'>'} COLIN SHAW</p>
       <p className="text-foreground">
-        Senior at UW-Madison studying Computer Science and Data Science with full-stack development experience specializing in React, Python, and Java. Extensive track record building production features and leading large-scale projects. Seeking full-time software engineering roles in a full-stack or AI-adjacent role.
+        Computer Science graduate from UW-Madison with full-stack experience across React, Python, and Java. Built technical proficiency through professional experience, coursework, and personal projects. Seeking full-time software engineering roles in full-stack or AI-adjacent environments.
       </p>
       <p className="text-gray-light">
         Los Angeles, CA · Madison, WI
@@ -107,13 +107,13 @@ const PROJECTS = [
     },
     {
       name: "QuestGPT",
-      description: "Full-stack infinite survival game with battles, shops, and NPCs. Built with a 5-person team for CS506 (Software Development).",
+      description: "Full-stack survival game integrating the Gemma 3 LLM for dynamic NPC dialogue and quest generation. Built with a 5-person team for CS506 (Software Development).",
       tech: ["Java", "Spring Boot", "React", "MySQL"],
       link: "https://github.com/mattdomingo/QuestGPT",
     },
     {
       name: "MadMovies",
-      description: "Movie recommendation service built in 24 hours at MadData Hackathon 2025. Delivers recommendations through data processing.",
+      description: "Full-stack movie recommendation app built in 24 hours for MadData Hackathon. Users complete a preference quiz filtered against a movie dataset, with live poster fetching via the TMDB API.",
       tech: ["FastAPI", "SQLite", "React"],
       link: "https://github.com/Jake-Garneau/MadMovies",
     },
@@ -177,7 +177,7 @@ function ResumeOutput() {
       <p className="text-green text-glow font-bold">{'>'} RESUME</p>
 
       <a
-        href="/Colin_Shaw_Resume.pdf"
+        href="/Colin Shaw Resume May 2026.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-block text-cyan border border-cyan px-3 py-1 text-sm hover:bg-cyan hover:text-background transition-colors"
@@ -190,23 +190,24 @@ function ResumeOutput() {
         <div className="pl-4 space-y-3 mt-1">
           <div>
             <p className="text-foreground">Software Developer (UW Madison Capstone) — <span className="text-cyan">Amazon/Shopbop</span></p>
-            <p className="text-gray-light text-sm">Jan 2026 — Present · Manhattan Beach, CA</p>
-            <p className="text-gray-light text-sm pl-2">• Product Owner and Developer for CS 620 capstone team under Shopbop mentors</p>
-            <p className="text-gray-light text-sm pl-2">• Designed and iterated on a capsule wardrobe creation application, solving novel problems and prioritizing high-impact features</p>
+            <p className="text-gray-light text-sm">Jan 2026 — April 2026 · Madison, WI</p>
+            <p className="text-gray-light text-sm pl-2">• Served as Product Owner for a 5-person capstone team, owning the full Jira backlog and sprint planning while conducting customer interviews and iterating on a capsule wardrobe creation app under Shopbop mentorship</p>
           </div>
           <div>
             <p className="text-foreground">Software Development Intern — <span className="text-cyan">TVScientific</span></p>
             <p className="text-gray-light text-sm">Jun 2025 — Sept 2025 · El Segundo, CA</p>
-            <p className="text-gray-light text-sm pl-2">• Designed and implemented new audience targeting functions in an agile team</p>
-            <p className="text-gray-light text-sm pl-2">• Built a custom GitHub Action to automate backporting, streamlining CI/CD</p>
-            <p className="text-gray-light text-sm pl-2">• Improved frontend test coverage using Jest</p>
+            <p className="text-gray-light text-sm pl-2">• Designed and implemented new audience targeting functions as part of an agile development team</p>
+            <p className="text-gray-light text-sm pl-2">• Built a custom GitHub Action to automate backporting, improving the development experience by streamlining a difficult part of the CI/CD process</p>
+            <p className="text-gray-light text-sm pl-2">• Improved frontend test coverage using Jest, ensuring reliability of UI components</p>
           </div>
           <div>
             <p className="text-foreground">Executive Director — <span className="text-cyan">Humorology Inc.</span></p>
-            <p className="text-gray-light text-sm">Jun 2023 — Present · Madison, WI</p>
-            <p className="text-gray-light text-sm pl-2">• Manage 9 casts of 100-200 people as liaison between exec board and production</p>
-            <p className="text-gray-light text-sm pl-2">• Projected to raise $500K+ for Gio&apos;s Garden nonprofit (2025-2026)</p>
-            <p className="text-gray-light text-sm pl-2">• Previously PR Chair — raised $610K+ for Safe Harbor (2024-2025)</p>
+            <p className="text-gray-light text-sm">Jun 2023 — April 2026 · Madison, WI</p>
+            <p className="text-gray-light text-sm pl-2">• Served as the primary liaison between the executive board and 9 casts of 100-200 members, facilitating director meetings and driving key organizational decisions across all productions</p>
+            <p className="text-gray-light text-sm pl-2">• Raised $850,000 for the Gio&apos;s Garden nonprofit respite care service during the 2025-2026 academic year</p>
+            <p className="text-foreground pl-2 mt-1">Public Relations Chair</p>
+            <p className="text-gray-light text-sm pl-2">• Handled all marketing and community relations for Wisconsin&apos;s largest student-run philanthropy, including social media, apparel design, show program, and videographer/photographer booking</p>
+            <p className="text-gray-light text-sm pl-2">• Raised over $610,000 for the Safe Harbor Child Advocacy Center, a $100,000 increase from the previous year</p>
           </div>
         </div>
       </div>
@@ -215,7 +216,7 @@ function ResumeOutput() {
         <p className="text-amber font-bold">Education</p>
         <div className="pl-4 mt-1">
           <p className="text-foreground">B.S. Computer Science, Data Science Certificate</p>
-          <p className="text-gray-light text-sm">University of Wisconsin-Madison · Senior · 3.3 GPA · Sep 2022 — May 2026</p>
+          <p className="text-gray-light text-sm">University of Wisconsin-Madison · Sep 2022 — May 2026</p>
         </div>
       </div>
     </div>
