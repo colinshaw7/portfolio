@@ -22,11 +22,11 @@ interface HistoryEntry {
   output: React.ReactNode;
 }
 
-const COMMANDS: Record<string, { description: string; category: string }> = {
+const COMMANDS: Record<string, { description: string; category: string; label?: string }> = {
   help: { description: "List available commands", category: "system" },
   about: { description: "Who is Colin Shaw?", category: "info" },
   skills: { description: "Technical skills & expertise", category: "info" },
-  projects: { description: "Featured projects & work", category: "info" },
+  projects: { description: "Featured projects — filter by tech with projects <tech>", category: "info", label: "projects [tech]" },
   resume: { description: "Education & experience", category: "info" },
   contact: { description: "Get in touch", category: "info" },
   dino: { description: "Play the dino runner game", category: "extra" },
@@ -80,8 +80,7 @@ function SkillsOutput() {
   );
 }
 
-function ProjectsOutput() {
-  const projects = [
+const PROJECTS = [
     {
       name: "Pokemon Battler",
       description: "Pokemon Showdown-esque real-time multiplayer battle simulator. Players sign in via Google, create or join 6v6 turn-based battles using a private 6-character code, with WebSocket communication for live updates.",
@@ -118,29 +117,56 @@ function ProjectsOutput() {
       tech: ["FastAPI", "SQLite", "React"],
       link: "https://github.com/Jake-Garneau/MadMovies",
     },
-  ];
+];
 
+function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
+  return (
+    <div className="border border-green-dark p-3 space-y-1">
+      <div className="flex items-center justify-between">
+        <span className="text-amber font-bold">{project.name}</span>
+        <a href={project.link} className="text-cyan text-sm hover:underline">
+          [view →]
+        </a>
+      </div>
+      <p className="text-foreground text-sm">{project.description}</p>
+      <div className="flex flex-wrap gap-2">
+        {project.tech.map((t) => (
+          <span key={t} className="text-green-dim text-xs">
+            #{t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProjectsOutput() {
   return (
     <div className="space-y-4">
       <p className="text-green text-glow font-bold">{'>'} FEATURED PROJECTS</p>
-      {projects.map((project) => (
-        <div key={project.name} className="border border-green-dark p-3 space-y-1">
-          <div className="flex items-center justify-between">
-            <span className="text-amber font-bold">{project.name}</span>
-            <a href={project.link} className="text-cyan text-sm hover:underline">
-              [view →]
-            </a>
-          </div>
-          <p className="text-foreground text-sm">{project.description}</p>
-          <div className="flex gap-2">
-            {project.tech.map((t) => (
-              <span key={t} className="text-green-dim text-xs">
-                #{t}
-              </span>
-            ))}
-          </div>
-        </div>
+      {PROJECTS.map((project) => (
+        <ProjectCard key={project.name} project={project} />
       ))}
+    </div>
+  );
+}
+
+function ProjectByTechOutput({ tech }: { tech: string }) {
+  const matches = PROJECTS.filter((p) =>
+    p.tech.some((t) => t.toLowerCase() === tech.toLowerCase())
+  );
+  return (
+    <div className="space-y-4">
+      <p className="text-green text-glow font-bold">{'>'} PROJECTS USING {tech.toUpperCase()}</p>
+      {matches.length === 0 ? (
+        <p className="text-gray-light text-sm">
+          No projects found using <span className="text-amber">{tech}</span>.
+        </p>
+      ) : (
+        matches.map((project) => (
+          <ProjectCard key={project.name} project={project} />
+        ))
+      )}
     </div>
   );
 }
@@ -278,13 +304,13 @@ function HelpOutput({ onCommand }: { onCommand: (cmd: string) => void }) {
           <div key={cat}>
             <span className="text-amber">[{labels[cat]}]</span>
             <div className="pl-4 mt-1 space-y-0.5">
-              {cmds.map(([cmd, { description }]) => (
+              {cmds.map(([cmd, { description, label }]) => (
                 <div key={cmd} className="flex gap-2">
                   <button
                     onClick={() => onCommand(cmd)}
-                    className="text-cyan hover:text-green transition-colors text-sm w-24 text-left !cursor-pointer"
+                    className="text-cyan hover:text-green transition-colors text-sm w-32 text-left !cursor-pointer"
                   >
-                    {cmd}
+                    {label ?? cmd}
                   </button>
                   <span className="text-gray-light text-sm">— {description}</span>
                 </div>
@@ -369,7 +395,12 @@ export default function Home() {
         setInput("");
         return;
       default:
-        output = <ErrorOutput command={trimmed} />;
+        if (trimmed.startsWith("projects ")) {
+          const tech = trimmed.slice(9).trim();
+          output = tech ? <ProjectByTechOutput tech={tech} /> : <ProjectsOutput />;
+        } else {
+          output = <ErrorOutput command={trimmed} />;
+        }
     }
 
     setHistory((prev) => [...prev, { command: cmd, output }]);
