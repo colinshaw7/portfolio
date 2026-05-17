@@ -85,7 +85,7 @@ function ProjectsOutput() {
     {
       name: "Pokemon Battler",
       description: "Pokemon Showdown-esque real-time multiplayer battle simulator. Players sign in via Google, create or join 6v6 turn-based battles using a private 6-character code, with WebSocket communication for live updates.",
-      tech: ["Next.js", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Docker", "NextAuth.js"],
+      tech: ["Next.js", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Docker", "NextAuth.js", "Jest", "pytest"],
       link: "https://github.com/colinshaw7/pokemon-battler",
     },
     {
