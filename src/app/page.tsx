@@ -82,7 +82,13 @@ function SkillsOutput() {
 
 function ProjectsOutput() {
   const projects = [
-     {
+    {
+      name: "Pokemon Battler",
+      description: "Pokemon Showdown-esque real-time multiplayer battle simulator. Players sign in via Google, create or join 6v6 turn-based battles using a private 6-character code, with WebSocket communication for live updates.",
+      tech: ["Next.js", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Docker", "NextAuth.js"],
+      link: "https://github.com/colinshaw7/pokemon-battler",
+    },
+    {
       name: "Uncluttrd",
       description: "Capsule Wardrobe creator and explorer app. Built with a 6-person team for CS620 (Computer Science Capstone/Senior Design Project) in collaboration with Amazon/Shopbop.",
       tech: ["React", "Vite", "FastAPI","AWS Cloudfront", "AWS S3", "AWS EC2","AWS RDS", "Github Actions CI/CD", "Docker"],
