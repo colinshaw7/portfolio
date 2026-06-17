@@ -8,7 +8,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "COLIN SHAW | Terminal Portfolio",
+  title: "Colin Shaw Portfolio",
   description: "Software engineer portfolio — type a command to explore.",
 };
 
