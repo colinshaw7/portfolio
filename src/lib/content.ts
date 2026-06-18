@@ -12,9 +12,9 @@ export interface SkillGroup {
 export const SKILLS: SkillGroup[] = [
   { category: "Languages", items: ["Java", "Python", "JavaScript", "TypeScript", "C", "C++", "R", "Assembly"] },
   { category: "Frontend", items: ["React", "Next.js", "Vite", "Jest", "Tailwind CSS"] },
-  { category: "Backend", items: ["Spring Boot", "FastAPI", "MySQL", "SQLite", "SQLAlchemy"] },
+  { category: "Backend", items: ["Spring Boot", "FastAPI","PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Redis"] },
   { category: "Libraries", items: ["Scikit-learn", "NumPy", "Pandas", "Matplotlib"] },
-  { category: "Tools", items: ["Git", "Docker", "Jira", "GitHub Actions", "CI/CD"] },
+  { category: "Tools", items: ["Git", "AWS", "Docker", "Jira", "GitHub Actions", "CI/CD"] },
 ];
 
 export interface Project {
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export const RESUME_PDF = "/Colin Shaw Resume May 2026.pdf";
+export const RESUME_PDF = "/Colin Shaw Resume 2026.pdf";
 
 export interface ExperienceRole {
   title: string;
