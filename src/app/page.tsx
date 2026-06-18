@@ -5,6 +5,17 @@ import dynamic from "next/dynamic";
 
 const CRTOverlay = dynamic(() => import("../components/CRTOverlay"), { ssr: false });
 import DinoGame from "../components/DinoGame";
+import {
+  ABOUT,
+  LOCATION,
+  SKILLS,
+  PROJECTS,
+  RESUME_PDF,
+  EXPERIENCE,
+  EDUCATION,
+  CONTACT,
+  type Project,
+} from "../lib/content";
 
 const ASCII_ART = `
   /$$$$$$            /$$ /$$                  /$$$$$$  /$$                              
@@ -39,29 +50,20 @@ function AboutOutput() {
     <div className="space-y-3">
       <p className="text-green text-glow font-bold">{'>'} COLIN SHAW</p>
       <p className="text-foreground">
-        Computer Science graduate from UW-Madison with full-stack experience across React, Python, and Java. Built technical proficiency through professional experience, coursework, and personal projects. Seeking full-time software engineering roles in full-stack or AI-adjacent environments.
+        {ABOUT}
       </p>
       <p className="text-gray-light">
-        Los Angeles, CA · Madison, WI
+        {LOCATION}
       </p>
     </div>
   );
 }
 
 function SkillsOutput() {
-  const skills = [
-    { category: "Languages", items: ["Java", "Python", "JavaScript", "TypeScript", "C", "C++", "R", "Assembly"] },
-    { category: "Frontend", items: ["React", "Next.js", "Vite", "Jest", "Tailwind CSS"] },
-    { category: "Backend", items: ["Spring Boot", "FastAPI", "MySQL", "SQLite", "SQLAlchemy"] },
-    { category: "Libraries", items: ["Scikit-learn", "NumPy", "Pandas", "Matplotlib"] },
-    { category: "Tools", items: ["Git", "Docker", "Jira", "GitHub Actions", "CI/CD"] },
-
-  ];
-
   return (
     <div className="space-y-3">
       <p className="text-green text-glow font-bold">{'>'} TECHNICAL SKILLS</p>
-      {skills.map((group) => (
+      {SKILLS.map((group) => (
         <div key={group.category}>
           <span className="text-amber">[{group.category}]</span>
           <div className="pl-4 flex flex-wrap gap-2 mt-1">
@@ -80,46 +82,7 @@ function SkillsOutput() {
   );
 }
 
-const PROJECTS = [
-    {
-      name: "Pokemon Battler",
-      description: "Pokemon Showdown-esque real-time multiplayer battle simulator. Players sign in via Google, create or join 6v6 turn-based battles using a private 6-character code, with WebSocket communication for live updates.",
-      tech: ["Next.js", "FastAPI", "WebSockets", "Redis", "PostgreSQL", "Docker", "NextAuth.js", "Jest", "pytest"],
-      link: "https://github.com/colinshaw7/pokemon-battler",
-    },
-    {
-      name: "Uncluttrd",
-      description: "Capsule Wardrobe creator and explorer app. Built with a 6-person team for CS620 (Computer Science Capstone/Senior Design Project) in collaboration with Amazon/Shopbop.",
-      tech: ["React", "Vite", "FastAPI","AWS Cloudfront", "AWS S3", "AWS EC2","AWS RDS", "Github Actions CI/CD", "Docker"],
-      link: "https://uncluttrd.fit",
-    },
-    {
-      name: "MadTrips",
-      description: "Trip-planning app to help a user find points of interest along a travel path.",
-      tech: ["React", "Vite", "Zustand", "FastAPI", "Tailwind CSS", "Mapbox GL JS", "OpenRouteService API",  "Docker"],
-      link: "https://github.com/colinshaw7/trip-planner",
-    },
-    {
-      name: "Terminal Portfolio",
-      description: "This site! A retro CRT-styled interactive terminal portfolio built with Next.js and Tailwind CSS.",
-      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Three.js"],
-      link: "https://github.com/colinshaw7/portfolio",
-    },
-    {
-      name: "QuestGPT",
-      description: "Full-stack survival game integrating the Gemma 3 LLM for dynamic NPC dialogue and quest generation. Built with a 5-person team for CS506 (Software Development).",
-      tech: ["Java", "Spring Boot", "React", "MySQL"],
-      link: "https://github.com/mattdomingo/QuestGPT",
-    },
-    {
-      name: "MadMovies",
-      description: "Full-stack movie recommendation app built in 24 hours for MadData Hackathon. Users complete a preference quiz filtered against a movie dataset, with live poster fetching via the TMDB API.",
-      tech: ["FastAPI", "SQLite", "React"],
-      link: "https://github.com/Jake-Garneau/MadMovies",
-    },
-];
-
-function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="border border-green-dark p-3 space-y-1">
       <div className="flex items-center justify-between">
@@ -177,7 +140,7 @@ function ResumeOutput() {
       <p className="text-green text-glow font-bold">{'>'} RESUME</p>
 
       <a
-        href="/Colin Shaw Resume May 2026.pdf"
+        href={RESUME_PDF}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-block text-cyan border border-cyan px-3 py-1 text-sm hover:bg-cyan hover:text-background transition-colors"
@@ -188,35 +151,31 @@ function ResumeOutput() {
       <div>
         <p className="text-amber font-bold">Experience</p>
         <div className="pl-4 space-y-3 mt-1">
-          <div>
-            <p className="text-foreground">Software Developer (UW Madison Capstone) — <span className="text-cyan">Amazon/Shopbop</span></p>
-            <p className="text-gray-light text-sm">Jan 2026 — April 2026 · Madison, WI</p>
-            <p className="text-gray-light text-sm pl-2">• Served as Product Owner for a 5-person capstone team, owning the full Jira backlog and sprint planning while conducting customer interviews and iterating on a capsule wardrobe creation app under Shopbop mentorship</p>
-          </div>
-          <div>
-            <p className="text-foreground">Software Development Intern — <span className="text-cyan">TVScientific</span></p>
-            <p className="text-gray-light text-sm">Jun 2025 — Sept 2025 · El Segundo, CA</p>
-            <p className="text-gray-light text-sm pl-2">• Designed and implemented new audience targeting functions as part of an agile development team</p>
-            <p className="text-gray-light text-sm pl-2">• Built a custom GitHub Action to automate backporting, improving the development experience by streamlining a difficult part of the CI/CD process</p>
-            <p className="text-gray-light text-sm pl-2">• Improved frontend test coverage using Jest, ensuring reliability of UI components</p>
-          </div>
-          <div>
-            <p className="text-foreground">Executive Director — <span className="text-cyan">Humorology Inc.</span></p>
-            <p className="text-gray-light text-sm">Jun 2023 — April 2026 · Madison, WI</p>
-            <p className="text-gray-light text-sm pl-2">• Served as the primary liaison between the executive board and 9 casts of 100-200 members, facilitating director meetings and driving key organizational decisions across all productions</p>
-            <p className="text-gray-light text-sm pl-2">• Raised $850,000 for the Gio&apos;s Garden nonprofit respite care service during the 2025-2026 academic year</p>
-            <p className="text-foreground pl-2 mt-1">Public Relations Chair</p>
-            <p className="text-gray-light text-sm pl-2">• Handled all marketing and community relations for Wisconsin&apos;s largest student-run philanthropy, including social media, apparel design, show program, and videographer/photographer booking</p>
-            <p className="text-gray-light text-sm pl-2">• Raised over $610,000 for the Safe Harbor Child Advocacy Center, a $100,000 increase from the previous year</p>
-          </div>
+          {EXPERIENCE.map((company) => (
+            <div key={company.org}>
+              <p className="text-cyan font-bold">{company.org}</p>
+              <p className="text-gray-light text-sm">{company.location}</p>
+              <div className="pl-2 space-y-2 mt-1">
+                {company.roles.map((role) => (
+                  <div key={role.title}>
+                    <p className="text-foreground">{role.title}</p>
+                    <p className="text-gray-light text-sm">{role.dates}</p>
+                    {role.bullets.map((bullet, i) => (
+                      <p key={i} className="text-gray-light text-sm pl-2">• {bullet}</p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       <div>
         <p className="text-amber font-bold">Education</p>
         <div className="pl-4 mt-1">
-          <p className="text-foreground">B.S. Computer Science, Data Science Certificate</p>
-          <p className="text-gray-light text-sm">University of Wisconsin-Madison · Sep 2022 — May 2026</p>
+          <p className="text-foreground">{EDUCATION.degree}</p>
+          <p className="text-gray-light text-sm">{EDUCATION.detail}</p>
         </div>
       </div>
     </div>
@@ -231,24 +190,24 @@ function ContactOutput() {
         <p>
           <span className="text-amber">email</span>
           <span className="text-gray"> .... </span>
-          <a href="mailto:colinjshaw1@gmail.com" className="text-cyan hover:underline">colinjshaw1@gmail.com</a>
+          <a href={`mailto:${CONTACT.email}`} className="text-cyan hover:underline">{CONTACT.email}</a>
         </p>
         <p>
           <span className="text-amber">github</span>
           <span className="text-gray"> ... </span>
-          <a href="https://github.com/colinshaw7" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">github.com/colinshaw7</a>
+          <a href={CONTACT.github[0].url} target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">{CONTACT.github[0].label}</a>
           <a> and </a>
-          <a href="https://github.com/cjshaw3" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">github.com/cjshaw3</a>
+          <a href={CONTACT.github[1].url} target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">{CONTACT.github[1].label}</a>
         </p>
         <p>
           <span className="text-amber">linkedin</span>
           <span className="text-gray"> . </span>
-          <a href="https://www.linkedin.com/in/colin-shaw-2003abc/" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">linkedin.com/in/colin-shaw-2003abc</a>
+          <a href={CONTACT.linkedin.url} target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">{CONTACT.linkedin.label}</a>
         </p>
         <p>
           <span className="text-amber">phone</span>
           <span className="text-gray"> ... </span>
-          <span className="text-cyan">(310) 415-4289</span>
+          <span className="text-cyan">{CONTACT.phone}</span>
         </p>
       </div>
     </div>
